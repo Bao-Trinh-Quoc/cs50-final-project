@@ -1,0 +1,1 @@
+# Edito --- A simple text editor written in C from scratch, not using any libraries except for the standard C library.

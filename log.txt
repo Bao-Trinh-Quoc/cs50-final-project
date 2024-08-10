@@ -1,0 +1,40 @@
+############## 10/08/2024 #############
+
+Init new project: Write a text editor from scratch
+
+for compiles, run the following command:
+-----> cc edito.c -o edito
+
+in MakeFile:
+-----> $(CC) edito.c -o edito -Wall -Wextra -pedantic -std=c99	
+
+* $(CC) is a variable that holds the name of the compiler.
+* -Wall : all warnings: enable all the warnings about constructions that some users consider questionable, and that are easy to avoid
+* -Wextra : extra warnings: This enables some extra warning flags that are not enabled by -Wall
+* -pedantic : issue all the warnings demanded by strict ISO C and ISO C++
+* -std=c99 : use the C99 standard
+
+running make edito will compile the program
+
+---- add enableRawMode and disableRawMode functions to enable and disable raw mode respectively
+asciitable: 
+https://www.asciitable.com/
+
+
+Ctrl-C is the interrupt signal, which is sent to a process by the kernel in order to request its termination. 
+By default, this causes the process to terminate with a SIGINT signal.
+
+Ctr-Z is the suspend signal, which is sent to a process by the kernel in order to request its suspension.
+
+Ctrl-Q is the XON character, which is used for software flow control.
+
+Ctrl-S is the XOFF character, which is used for software flow control.
+
+-Note: problem with Ctrl-V when using it in the terminal, it is used to paste text, 
+so it is not possible to use it as a key binding.
+
+complete entering raw mode 
+
+======= Refs =======
+https://pubs.opengroup.org/onlinepubs/7908799/xsh/termios.h.html
+
