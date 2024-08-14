@@ -7,8 +7,20 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/ioctl.h>
 #include <termios.h>
 #include <unistd.h>
+
+/*** Data ****/
+
+struct editorConfig 
+{
+    int screenrows;
+    int screencols;
+    struct termios orig_termios;
+};
+
+extern struct editorConfig E;
 
 /*** Defines ***/
 
@@ -20,6 +32,7 @@ void enableRawMode();
 void disableRawMode();
 char editorReadKey();
 void die(const char *s);
+int getWindowSize(int *rows, int *cols);
 
 /*** Input ****/
 
@@ -29,5 +42,8 @@ void editorProcessKeypress();
 
 void editorRefreshScreen();
 void editorDrawRows();
+
+/*** Init ***/
+void initEditor(); 
 
 #endif

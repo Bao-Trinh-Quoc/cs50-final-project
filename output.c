@@ -12,7 +12,7 @@ void editorRefreshScreen()
 
 void editorDrawRows()
 {
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < E.screenrows; i++)
     {
         write(STDIN_FILENO, "*\r\n", 3);
     }
