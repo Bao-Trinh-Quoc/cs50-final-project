@@ -41,6 +41,7 @@ Simpilified main function by added editorProcessKeypress function
 --- refresh screen after every keypress
 --- added tildes like vim ;0 but with this I will draw *
 
+Reminders: Needed to split the code into multiple files
 
 
 ======= Refs =======
