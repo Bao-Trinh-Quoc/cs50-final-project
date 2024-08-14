@@ -30,10 +30,18 @@ Ctrl-Q is the XON character, which is used for software flow control.
 
 Ctrl-S is the XOFF character, which is used for software flow control.
 
--Note: problem with Ctrl-V when using it in the terminal, it is used to paste text, 
+---- Note: problem with Ctrl-V when using it in the terminal, it is used to paste text, 
 so it is not possible to use it as a key binding.
 
 complete entering raw mode 
+
+############## 14/08/2024 #############
+changed from q to Ctrl-Q to quit the program
+Simpilified main function by added editorProcessKeypress function
+--- refresh screen after every keypress
+--- added tildes like vim ;0 but with this I will draw *
+
+
 
 ======= Refs =======
 https://pubs.opengroup.org/onlinepubs/7908799/xsh/termios.h.html

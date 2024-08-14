@@ -7,6 +7,10 @@
 #include <termios.h>
 #include <unistd.h>
 
+/*** Defines ***/
+#define CTRL_KEY(k) ((k) & 0x1f) 
+
+
 /*** Data  ***/
 
 struct termios orig_termios;
@@ -15,8 +19,17 @@ struct termios orig_termios;
 
 void enableRawMode();
 void disableRawMode();
-void die(const char *s); // Error handling 
+char editorReadKey();       // wait for one key press then return it
+void die(const char *s);    // Error handling 
 
+/*** Input ****/
+
+void editorProcessKeypress();   // wait for a key press, then handles it
+
+/*** Output ****/
+
+void editorRefreshScreen();
+void editorDrawRows();
 /*** init  ***/
 
 int main()
@@ -25,25 +38,10 @@ int main()
 
     while (1)
     {
-        char c = '\0';
-        if (read(STDIN_FILENO, &c, 1) == -1 && errno != EAGAIN)
-        {
-            die("read");
-        }
-        if (iscntrl(c)) 
-        {
-            printf("%d\r\n", c);
-        }
-        else 
-        {
-            printf("%d ('%c')\r\n", c, c);
-        }
-        // type q to quit
-        if (c == 'q')
-        {
-            break;
-        }
+		editorRefreshScreen();
+    	editorProcessKeypress();
     }
+    
     return 0;
 }
 
@@ -85,6 +83,55 @@ void disableRawMode()
 }
 void die(const char *s)
 {
+	write(STDIN_FILENO, "\x1b[2J", 4);
+	write(STDIN_FILENO, "\x1b[H", 3);
+
     perror(s);
     exit(1);
+}
+
+char editorReadKey() 
+{
+    int nread;
+    char c;
+    while ((nread = read(STDIN_FILENO, &c, 1)) != 1)
+    {
+        if (nread == -1 && errno != EAGAIN)
+            die("read");
+    }
+    
+    return c;
+}
+
+void editorProcessKeypress()
+{
+    char c = editorReadKey();
+
+    switch (c) 
+    {
+        case CTRL_KEY('q'):
+			write(STDIN_FILENO, "\x1b[2J", 4);
+			write(STDIN_FILENO, "\x1b[H", 3);
+	        exit(0);
+            break;
+    }
+}
+
+void editorRefreshScreen() 
+{
+    write(STDIN_FILENO, "\x1b[2J", 4);
+	write(STDIN_FILENO, "\x1b[H", 3);
+
+	editorDrawRows();
+
+	write(STDIN_FILENO, "\x1b[H", 3);
+}
+
+void editorDrawRows() 
+{
+	// 30 is just some arbitrary number
+	for (int i = 0; i < 30; i++)
+	{
+		write(STDIN_FILENO, "*\r\n", 3);
+	}
 }
