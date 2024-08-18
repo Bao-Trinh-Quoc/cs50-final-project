@@ -45,8 +45,10 @@ Reminders: Needed to split the code into multiple files
 Done!
 
 Reminders: Needed to learn how to branch and merge in git and applied it to my current project for learning purposes
+(doesn't needed to do it right now bcs the size of this project is small)
 
-
+############## 18/08/2024 #############
+Added fallback method for getting the windows size if the ioctl() method fails
 
 ======= Refs =======
 https://pubs.opengroup.org/onlinepubs/7908799/xsh/termios.h.html

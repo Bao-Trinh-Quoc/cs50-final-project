@@ -33,7 +33,7 @@ void disableRawMode();
 char editorReadKey();
 void die(const char *s);
 int getWindowSize(int *rows, int *cols);
-
+int getCursorPosition(int *row, int *cols);
 /*** Input ****/
 
 void editorProcessKeypress();
