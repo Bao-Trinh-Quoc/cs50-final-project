@@ -72,6 +72,8 @@ int editorReadKey()
                     {
                         case '1': 
                             return HOME_KEY;
+                        case '3':
+                            return DEL_KEY;
                         case '4':
                             return END_KEY;
                         case '5': 
