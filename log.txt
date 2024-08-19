@@ -56,6 +56,11 @@ added welcome message and fix some bugs
 
 Implement move cursor with arrow keys 
 
+* Prevent the cursor from going out of the screen
+* Implement PageUp and PageDown keys
+
+FUNFACT: YOU CANNOT DECLARE VARIABLES DIRECTLY IN THE SWITCH STATEMENT IN C --- so I needed to create a code block for this.
+
 ======= Refs =======
 https://pubs.opengroup.org/onlinepubs/7908799/xsh/termios.h.html
 https://man7.org/linux/man-pages/man2/ioctl.2.html

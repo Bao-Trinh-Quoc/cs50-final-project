@@ -11,6 +11,15 @@ void editorProcessKeypress()
             write(STDIN_FILENO, "\x1b[H", 3);
             exit(0);
             break;
+        // move the cursor to top or bottom of the screen when pressing page up or page down
+        case PAGE_UP:
+        case PAGE_DOWN:
+            {
+                int times = E.screenrows;   
+                while (times--)
+                    editorMoveCursor(c == PAGE_UP ? ARROW_UP : ARROW_DOWN);
+            }
+            break;  
         case ARROW_UP:
         case ARROW_DOWN:
         case ARROW_LEFT:
@@ -25,16 +34,20 @@ void editorMoveCursor(int key)
     switch (key)
     {
         case ARROW_UP:
-            E.cy--;
+            if (E.cy != 0)
+                E.cy--;
             break;
         case ARROW_DOWN:
-            E.cy++;
+            if (E.cy != E.screenrows -1)
+                E.cy++;
             break;
         case ARROW_LEFT:
-            E.cx--;
+            if (E.cx != 0)
+                E.cx--;
             break;
         case ARROW_RIGHT:
-            E.cx++;
+            if (E.cx != E.screencols - 1)
+                E.cx++;
             break;
     }
 }
