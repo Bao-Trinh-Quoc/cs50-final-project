@@ -16,6 +16,7 @@
 
 struct editorConfig 
 {
+    int cx, cy;
     int screenrows;
     int screencols;
     struct termios orig_termios;
@@ -29,11 +30,17 @@ extern struct editorConfig E;
 
 #define CTRL_KEY(k) ((k) & 0x1f)
 
+enum editorKey {
+    ARROW_LEFT = 1000,
+    ARROW_RIGHT,
+    ARROW_UP,
+    ARROW_DOWN
+};
 /*** Terminal  ***/
 
 void enableRawMode();
 void disableRawMode();
-char editorReadKey();
+int editorReadKey();
 void die(const char *s);
 int getWindowSize(int *rows, int *cols);
 int getCursorPosition(int *row, int *cols);
@@ -52,6 +59,7 @@ void abFree(struct abuf *ab);
 /*** Input ****/
 
 void editorProcessKeypress();
+void editorMoveCursor(int key);   
 
 /*** Output ****/
 

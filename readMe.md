@@ -4,5 +4,4 @@
 
 Usage:
 ```bash
-To quit the editor, press Ctrl+Q.
 ```
