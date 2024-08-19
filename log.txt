@@ -59,6 +59,12 @@ Implement move cursor with arrow keys
 * Prevent the cursor from going out of the screen
 * Implement PageUp and PageDown keys
 
+Depeneding on OS, 
+---> the HOME key could be <esc>[1~, <esc>[7~, <esc>[H, or <esc>OH
+---> the END key could be <esc>[4~, <esc>[8~, <esc>[F, or <esc>OF            
+
+Make the HOME/END move the cursor to the left/right edge of the screen <FOR NOW>
+
 FUNFACT: YOU CANNOT DECLARE VARIABLES DIRECTLY IN THE SWITCH STATEMENT IN C --- so I needed to create a code block for this.
 
 ======= Refs =======

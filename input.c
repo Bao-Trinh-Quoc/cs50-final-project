@@ -11,6 +11,14 @@ void editorProcessKeypress()
             write(STDIN_FILENO, "\x1b[H", 3);
             exit(0);
             break;
+        // Make the cursor to the left of the screen
+        case HOME_KEY:
+            E.cx = 0;
+            break;
+        // Make the cursor to the right of the screen
+        case END_KEY:
+            E.cx = E.screencols - 1;
+            break;
         // move the cursor to top or bottom of the screen when pressing page up or page down
         case PAGE_UP:
         case PAGE_DOWN:
