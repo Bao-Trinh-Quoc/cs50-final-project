@@ -29,6 +29,7 @@ struct editorConfig
 {
     int cx, cy;
     int rowoff;
+    int coloff;
     int screenrows;
     int screencols;
     int numrows;
