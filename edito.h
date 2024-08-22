@@ -22,7 +22,9 @@
 typedef struct erow 
 {
     int size;
+    int rsize;
     char *chars;
+    char *render;
 } erow;
 
 struct editorConfig 
@@ -90,6 +92,8 @@ void editorScroll();
 /*** File I/O ***/
 
 void editorOpen();
+
+/*** Row operations ****/
 void editorAppendRow(char *s, size_t len);  /*** Row operations ***/
 
 /*** Init ***/
