@@ -71,6 +71,7 @@ DEL_KEY: <esc>[3~ <--- will be used to delete a character at the cursor position
 
 ############## 22/08/2024 #############
 Implement read file from disk and display it on the screen
+Implement vertical scrolling
 
 
 ======= Refs =======

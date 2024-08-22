@@ -12,7 +12,7 @@ void editorRefreshScreen()
     editorDrawRows(&ab);
 
     char buf[32];
-    snprintf(buf, sizeof(buf), "\x1b[%d;%dH", E.cy + 1, E.cx + 1);
+    snprintf(buf, sizeof(buf), "\x1b[%d;%dH", (E.cy - E.rowoff) + 1, E.cx + 1);
     abAppend(&ab, buf, strlen(buf));
 
     abAppend(&ab, "\x1b[?25H", 6);
@@ -23,9 +23,12 @@ void editorRefreshScreen()
 
 void editorDrawRows(struct abuf *ab)
 {
+    editorScroll();
+
     for (int i = 0; i < E.screenrows; i++)
     {   
-        if (i >= E.numrows)
+        int filerow = i + E.rowoff;
+        if (filerow >= E.numrows)
         {
             // Why E.screenrows / 3?
             if (i == E.screenrows / 3 && E.numrows == 0) 
@@ -55,10 +58,10 @@ void editorDrawRows(struct abuf *ab)
         } 
         else
         {
-            int len = E.row[i].size;
+            int len = E.row[filerow].size;
             if (len > E.screencols)
                 len = E.screencols;
-            abAppend(ab, E.row[i].chars, len);
+            abAppend(ab, E.row[filerow].chars, len);
         }
     
         
@@ -70,4 +73,17 @@ void editorDrawRows(struct abuf *ab)
             abAppend(ab, "\r\n", 2);
         }
     }
+}
+
+void editorScroll()
+{
+    if (E.cy < E.rowoff)
+    {
+        E.rowoff = E.cy;
+    }
+
+    if (E.cy >= E.rowoff + E.screenrows)
+    {
+        E.rowoff = E.cy - E.screenrows + 1;
+    } 
 }
