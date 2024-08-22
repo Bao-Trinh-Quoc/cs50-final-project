@@ -30,6 +30,7 @@ typedef struct erow
 struct editorConfig 
 {
     int cx, cy;
+    int rx;
     int rowoff;
     int coloff;
     int screenrows;
@@ -44,6 +45,7 @@ extern struct editorConfig E;
 /*** Defines ***/
 
 #define EDITO_VERSION "0.0.1"
+#define EDITO_TAB_STOP 8
 
 #define CTRL_KEY(k) ((k) & 0x1f)
 
@@ -78,6 +80,7 @@ struct abuf
 
 void abAppend(struct abuf *ab, const char *s, int len);
 void abFree(struct abuf *ab);
+
 /*** Input ****/
 
 void editorProcessKeypress();
@@ -94,7 +97,10 @@ void editorScroll();
 void editorOpen();
 
 /*** Row operations ****/
-void editorAppendRow(char *s, size_t len);  /*** Row operations ***/
+
+void editorAppendRow(char *s, size_t len);  
+void editorUpdateRow(erow *row);
+int editorRowCxToRx(erow *row, int cx);
 
 /*** Init ***/
 

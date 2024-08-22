@@ -79,6 +79,11 @@ Added:
     * Snap cursor to the end of line
     * Moving left at the start of line
     * Moving right at the end of line
+
+Make Page Up and Page Down move the cursor to the top and bottom of the screen respectively
+Make End move to the end of line
+
+
 ======= Refs =======
 https://pubs.opengroup.org/onlinepubs/7908799/xsh/termios.h.html
 https://man7.org/linux/man-pages/man2/ioctl.2.html

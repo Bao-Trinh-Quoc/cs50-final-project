@@ -13,6 +13,41 @@ void editorAppendRow(char *s, size_t len)
 
     E.row[at].rsize = 0;
     E.row[at].render = NULL;
+    editorUpdateRow(&E.row[at]);
 
     E.numrows ++;
+}
+
+void editorUpdateRow(erow *row) {
+    int tabs = 0;
+    int j;
+    for (j = 0; j < row->size; j++)
+        if (row->chars[j] == '\t') tabs++;
+    free(row->render);
+    row->render = malloc(row->size + tabs*(EDITO_TAB_STOP - 1) + 1);
+    int idx = 0;
+    for (j = 0; j < row->size; j++) {
+        if (row->chars[j] == '\t') {
+        row->render[idx++] = ' ';
+        while (idx % EDITO_TAB_STOP != 0) row->render[idx++] = ' ';
+        } else {
+        row->render[idx++] = row->chars[j];
+        }
+    }
+    row->render[idx] = '\0';
+    row->rsize = idx;
+}
+
+int editorRowCxToRx(erow *row, int cx)
+{
+    int rx = 0;
+    int j;
+    for (j = 0; j < cx; j++)
+    {
+        if (row->chars[j] == '\t')
+            rx += (EDITO_TAB_STOP - 1) - (rx % EDITO_TAB_STOP);
+        rx++;
+    }
+
+    return rx;
 }
