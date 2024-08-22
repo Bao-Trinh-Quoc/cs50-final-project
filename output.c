@@ -25,31 +25,43 @@ void editorDrawRows(struct abuf *ab)
 {
     for (int i = 0; i < E.screenrows; i++)
     {   
-        // Why E.screenrows / 3?
-        if (i == E.screenrows / 3) 
+        if (i >= E.numrows)
         {
-            char welcome[80];
-            int welcomelen = snprintf(welcome, sizeof(welcome), "Edito editor -- version %s by Cloudy ~_~", EDITO_VERSION);
-            if (welcomelen > E.screencols)
+            // Why E.screenrows / 3?
+            if (i == E.screenrows / 3 && E.numrows == 0) 
             {
-                welcomelen = E.screencols;
+                char welcome[80];
+                int welcomelen = snprintf(welcome, sizeof(welcome), "Edito editor -- version %s by Cloudy ~_~", EDITO_VERSION);
+                if (welcomelen > E.screencols)
+                {
+                    welcomelen = E.screencols;
+                }
+                int padding = (E.screencols - welcomelen) / 2;
+                if (padding)
+                {
+                    abAppend(ab, "*", 1);
+                    padding--;
+                }
+                while (padding--)
+                {
+                    abAppend(ab, " ", 1);
+                }
+                abAppend(ab, welcome, welcomelen);
             }
-            int padding = (E.screencols - welcomelen) / 2;
-            if (padding)
+            else
             {
                 abAppend(ab, "*", 1);
-                padding--;
             }
-            while (padding--)
-            {
-                abAppend(ab, " ", 1);
-            }
-            abAppend(ab, welcome, welcomelen);
-        }
+        } 
         else
         {
-            abAppend(ab, "*", 1);
+            int len = E.row[i].size;
+            if (len > E.screencols)
+                len = E.screencols;
+            abAppend(ab, E.row[i].chars, len);
         }
+    
+        
 
         abAppend(ab, "\x1b[K]", 3);
 

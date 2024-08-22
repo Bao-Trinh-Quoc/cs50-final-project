@@ -69,6 +69,10 @@ FUNFACT: YOU CANNOT DECLARE VARIABLES DIRECTLY IN THE SWITCH STATEMENT IN C --- 
 
 DEL_KEY: <esc>[3~ <--- will be used to delete a character at the cursor position later
 
+############## 22/08/2024 #############
+Implement read file from disk and display it on the screen
+
+
 ======= Refs =======
 https://pubs.opengroup.org/onlinepubs/7908799/xsh/termios.h.html
 https://man7.org/linux/man-pages/man2/ioctl.2.html
