@@ -88,6 +88,7 @@ Call it a day! (step 93) <--- Half a way yeaayayya!!
 ############## 24/08/2024 #############
 Added status bar to the bottom of the screen
 Added msg bar to display messages to the user
+Upgrade text viewr to text editor
 
 
 ======= Refs =======

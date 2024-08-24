@@ -111,6 +111,8 @@ void editorUpdateRow(erow *row);
 int editorRowCxToRx(erow *row, int cx);
 void editorRowInsertChar(erow *row, int at, int c);
 
+/*** Editor operations ****/
+void editorInsertChar(int c);
 
 /*** Init ***/
 

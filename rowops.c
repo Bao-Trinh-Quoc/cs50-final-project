@@ -62,3 +62,4 @@ void editorRowInsertChar(erow *row, int at, int c)
     row->chars[at] = c;
     editorUpdateRow(row);
 }
+
