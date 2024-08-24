@@ -83,6 +83,12 @@ Added:
 Make Page Up and Page Down move the cursor to the top and bottom of the screen respectively
 Make End move to the end of line
 
+Call it a day! (step 93) <--- Half a way yeaayayya!!
+
+############## 24/08/2024 #############
+Added status bar to the bottom of the screen
+Added msg bar to display messages to the user
+
 
 ======= Refs =======
 https://pubs.opengroup.org/onlinepubs/7908799/xsh/termios.h.html

@@ -2,6 +2,9 @@
 
 void editorOpen(char *filename)
 {
+    free(E.filename);
+    E.filename = strdup(filename);
+
     FILE *fp = fopen(filename, "r");
     if (!fp)
         die("fopen");

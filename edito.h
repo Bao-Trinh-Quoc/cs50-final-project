@@ -10,11 +10,13 @@
 #include <errno.h>
 #include <ctype.h>
 #include <stdio.h>
+#include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/ioctl.h>
 #include <sys/types.h>
 #include <termios.h>
+#include <time.h>
 #include <unistd.h>
 
 /*** Data ****/
@@ -37,6 +39,9 @@ struct editorConfig
     int screencols;
     int numrows;
     erow *row;
+    char *filename;
+    char statusmsg[80];
+    time_t statusmsg_time;
     struct termios orig_termios;
 };
 
@@ -91,6 +96,9 @@ void editorMoveCursor(int key);
 void editorRefreshScreen();
 void editorDrawRows();
 void editorScroll();
+void editorDrawStatusBar(struct abuf *ab);
+void editorSetStatusMessage(const char *fmt, ...);
+void editorDrawMessageBar(struct abuf *ab);
 
 /*** File I/O ***/
 
@@ -101,6 +109,8 @@ void editorOpen();
 void editorAppendRow(char *s, size_t len);  
 void editorUpdateRow(erow *row);
 int editorRowCxToRx(erow *row, int cx);
+void editorRowInsertChar(erow *row, int at, int c);
+
 
 /*** Init ***/
 
