@@ -2,6 +2,8 @@
 
 void editorProcessKeypress()
 {
+    static int quit_times = EDITO_QUIT_TIMES;
+
     int c = editorReadKey();
 
     switch (c)
@@ -10,6 +12,13 @@ void editorProcessKeypress()
             /* TO DO*/
             break;
         case CTRL_KEY('q'):
+            if (E.dirty && quit_times >0)
+            { 
+                editorSetStatusMessage("WARNING: File has unsaved changes. " 
+                "Press Ctrl-q %d more time(s) to quit.", quit_times);
+                quit_times--;
+                return;
+            }
             write(STDIN_FILENO, "\x1b[2J", 4);
             write(STDIN_FILENO, "\x1b[H", 3);
             exit(0);
@@ -65,6 +74,7 @@ void editorProcessKeypress()
             editorInsertChar(c);
             break;
     }
+    quit_times = EDITO_QUIT_TIMES;
 }
 
 void editorMoveCursor(int key)

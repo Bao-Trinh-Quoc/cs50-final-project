@@ -1,5 +1,5 @@
 ############## 10/08/2024 #############
-mak
+maek
 Init new project: Write a text editor from scratch
 2 testing string 3
 for compiles, run the following command:
@@ -93,6 +93,8 @@ Upgrade text viewr to text editor
 Allow users to edit files and save it to the disk 
 * Backspace and Enter key
 
+stop at step 111. Will complete text editor tonight!
+Implement confirm to quit if the file is not saved
 
 
 

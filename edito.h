@@ -40,6 +40,7 @@ struct editorConfig
     int screencols;
     int numrows;
     erow *row;
+    int dirty;
     char *filename;
     char statusmsg[80];
     time_t statusmsg_time;
@@ -52,7 +53,7 @@ extern struct editorConfig E;
 
 #define EDITO_VERSION "0.0.1"
 #define EDITO_TAB_STOP 8
-
+#define EDITO_QUIT_TIMES 1
 #define CTRL_KEY(k) ((k) & 0x1f)
 
 enum editorKey {
