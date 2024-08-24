@@ -17,7 +17,7 @@ void editorOpen(char *filename)
     {
         while (linelen > 0 && (line[linelen-1] == '\n' || line[linelen-1] == '\r'))
             linelen--;
-        editorAppendRow(line, linelen);
+        editorInsertRow(E.numrows, line, linelen);
     }
 
     free(line);
@@ -51,7 +51,7 @@ char *editorRowsToString(int *buflen)
 void editorSave()
 {
     if (E.filename == NULL)
-        return;
+        E.filename = editorPrompt("Save as: %s");
     int len;
     char *buf = editorRowsToString(&len);
 
