@@ -9,6 +9,7 @@
 
 #include <errno.h>
 #include <ctype.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -55,6 +56,7 @@ extern struct editorConfig E;
 #define CTRL_KEY(k) ((k) & 0x1f)
 
 enum editorKey {
+    BACKSPACE = 127,
     ARROW_LEFT = 1000,
     ARROW_RIGHT,
     ARROW_UP,
@@ -103,6 +105,8 @@ void editorDrawMessageBar(struct abuf *ab);
 /*** File I/O ***/
 
 void editorOpen();
+char *editorRowsToString(int *buflen);
+void editorSave();
 
 /*** Row operations ****/
 
@@ -112,7 +116,9 @@ int editorRowCxToRx(erow *row, int cx);
 void editorRowInsertChar(erow *row, int at, int c);
 
 /*** Editor operations ****/
+
 void editorInsertChar(int c);
+
 
 /*** Init ***/
 

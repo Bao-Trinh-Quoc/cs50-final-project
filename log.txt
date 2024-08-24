@@ -1,7 +1,7 @@
 ############## 10/08/2024 #############
 mak
 Init new project: Write a text editor from scratch
-
+2 testing string 3
 for compiles, run the following command:
 -----> cc edito.c -o edito
 
@@ -89,6 +89,11 @@ Call it a day! (step 93) <--- Half a way yeaayayya!!
 Added status bar to the bottom of the screen
 Added msg bar to display messages to the user
 Upgrade text viewr to text editor
+* Save to disk
+Allow users to edit files and save it to the disk 
+* Backspace and Enter key
+
+
 
 
 ======= Refs =======
