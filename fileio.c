@@ -51,7 +51,14 @@ char *editorRowsToString(int *buflen)
 void editorSave()
 {
     if (E.filename == NULL)
-        E.filename = editorPrompt("Save as: %s");
+    {
+        E.filename = editorPrompt("Save as: %s (Press ESC to cancel)");
+        if (E.filename == NULL)
+        {
+            editorSetStatusMessage("Save aborted");
+            return;
+        }
+    }
     int len;
     char *buf = editorRowsToString(&len);
 
