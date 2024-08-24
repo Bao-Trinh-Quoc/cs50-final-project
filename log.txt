@@ -1,7 +1,6 @@
 ############## 10/08/2024 #############
-maek
+
 Init new project: Write a text editor from scratch
-2 testing string 3
 for compiles, run the following command:
 -----> cc edito.c -o edito
 
@@ -96,6 +95,9 @@ Allow users to edit files and save it to the disk
 stop at step 111. Will complete text editor tonight!
 Implement confirm to quit if the file is not saved
 
+Implement Backspace containing the following:
+    * Allow to delete characters and move the cursor to the left
+    * When delete a character at the start of the line, it will join the current line with the previous line
 
 
 ======= Refs =======
