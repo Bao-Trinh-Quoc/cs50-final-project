@@ -93,7 +93,7 @@ void abFree(struct abuf *ab);
 
 void editorProcessKeypress();
 void editorMoveCursor(int key);   
-char *editorPrompt(char *prompt);
+char *editorPrompt(char *prompt, void(*callback)(char *, int));
 
 /*** Output ****/
 
@@ -115,6 +115,7 @@ void editorSave();
 void editorInsertRow(int at, char *s, size_t len);  
 void editorUpdateRow(erow *row);
 int editorRowCxToRx(erow *row, int cx);
+int editorRowRxToCx(erow *row, int rx);
 void editorRowInsertChar(erow *row, int at, int c);
 void editorRowDelChar(erow *row, int at);
 void editorFreeRow(erow *row);
@@ -126,6 +127,10 @@ void editorRowAppendString(erow *row, char *s, size_t len);
 void editorInsertChar(int c);
 void editorDelChar();
 void editorInsertNewline();
+
+/*** Find ***/
+void editorFind();
+void editorFindCallback(char *query, int key);
 
 /*** Init ***/
 

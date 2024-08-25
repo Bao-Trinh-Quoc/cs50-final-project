@@ -34,6 +34,10 @@ void editorProcessKeypress()
                 E.cx = E.row[E.cy].size;
             break;
         
+        case CTRL_KEY('F'):
+            editorFind();
+            break;
+
         case BACKSPACE:
         case CTRL_KEY('h'):
         case DEL_KEY:
@@ -119,7 +123,7 @@ void editorMoveCursor(int key)
         E.cx = rowlen;
 }
 
-char *editorPrompt(char *prompt)
+char *editorPrompt(char *prompt, void(*callback)(char *, int))
 {
     size_t bufsize = 128;
     char *buf = malloc(bufsize);
@@ -141,6 +145,8 @@ char *editorPrompt(char *prompt)
         else if (c == '\x1b') 
         {
             editorSetStatusMessage("");
+            if (callback)
+                callback(buf, c);
             free(buf);
             return NULL;
         }
@@ -149,6 +155,8 @@ char *editorPrompt(char *prompt)
             if (buflen != 0)
             {
                 editorSetStatusMessage("");
+                if (callback)
+                    callback(buf, c);
                 return buf;
             }
         }
@@ -162,5 +170,8 @@ char *editorPrompt(char *prompt)
             buf[buflen++] = c;
             buf[buflen] = '\0';
         }
+
+        if (callback)
+            callback(buf, c);
     }
 }

@@ -66,8 +66,6 @@ void editorDrawRows(struct abuf *ab)
             abAppend(ab, &E.row[filerow].render[E.coloff], len);
         }
     
-        
-
         abAppend(ab, "\x1b[K]", 3);
 
         abAppend(ab, "\r\n", 2);

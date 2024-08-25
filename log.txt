@@ -103,6 +103,16 @@ Implement Enter containing the following:
     * When Enter is pressed at the end of the line, it will insert a new line at the end of the file
 Implement save feauture: Allow user to create a new file by calling ./Edito then give it a name
 
+############## 25/08/2024 #############
+
+#### Weird bug: There is still one redundant line at the end of the file. ####
+
+Implement search feature:
+    * Allow user to search for a word in the file
+    * Allow user to move to the next occurence of the word
+    * Allow user to move to the previous occurence of the word
+    * Allow user to exit the search mode
+
 ======= Refs =======
 https://pubs.opengroup.org/onlinepubs/7908799/xsh/termios.h.html
 https://man7.org/linux/man-pages/man2/ioctl.2.html
