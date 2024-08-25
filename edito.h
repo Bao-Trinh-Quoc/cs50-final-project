@@ -28,6 +28,7 @@ typedef struct erow
     int rsize;
     char *chars;
     char *render;
+    unsigned char *hl;
 } erow;
 
 struct editorConfig 
@@ -44,10 +45,18 @@ struct editorConfig
     char *filename;
     char statusmsg[80];
     time_t statusmsg_time;
+    struct editorSyntax *syntax;
     struct termios orig_termios;
 };
 
 extern struct editorConfig E;
+
+struct editorSyntax {
+  char *filetype;
+  char **filematch;
+  int flags;
+};
+
 
 /*** Defines ***/
 
@@ -55,6 +64,8 @@ extern struct editorConfig E;
 #define EDITO_TAB_STOP 8
 #define EDITO_QUIT_TIMES 1
 #define CTRL_KEY(k) ((k) & 0x1f)
+#define HL_HIGHLIGHT_NUMBERS (1<<0)
+
 
 enum editorKey {
     BACKSPACE = 127,
@@ -68,6 +79,21 @@ enum editorKey {
     PAGE_UP,
     PAGE_DOWN
 };
+
+enum editorHighlight 
+{
+    HL_NORMAL = 0,
+    HL_NUMBER,
+    HL_MATCH
+};
+
+/*** filetypes ****/
+
+extern char *C_HL_extensions[];
+extern struct editorSyntax HLDB[];
+
+#define HLDB_ENTRIES (sizeof(HLDB) / sizeof(HLDB[0]))
+
 /*** Terminal  ***/
 
 void enableRawMode();
@@ -129,8 +155,16 @@ void editorDelChar();
 void editorInsertNewline();
 
 /*** Find ***/
+
 void editorFind();
 void editorFindCallback(char *query, int key);
+
+/*** Syntax highlighting ***/
+
+void editorUpdateSyntax(erow *row);
+int editorSyntaxToColor(int hl);
+int is_separator(int c);
+void editorSelectSyntaxHighlight();
 
 /*** Init ***/
 

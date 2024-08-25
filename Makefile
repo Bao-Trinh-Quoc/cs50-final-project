@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c99
 
 # List all the source files
-SRCS = edito.c terminal.c input.c output.c abuf.c fileio.c rowops.c editops.c find.c
+SRCS = edito.c terminal.c input.c output.c abuf.c fileio.c rowops.c editops.c find.c hlsyntax.c
 
 # Define the object files
 OBJS = $(SRCS:.c=.o)

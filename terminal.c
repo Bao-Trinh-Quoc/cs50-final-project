@@ -176,6 +176,7 @@ void initEditor()
     E.filename = NULL;
     E.statusmsg[0] = '\0';
     E.statusmsg_time = 0;
+    E.syntax = NULL;
     if (getWindowSize(&E.screenrows, &E.screencols) == -1)
     {
         die("getWindowSize");
