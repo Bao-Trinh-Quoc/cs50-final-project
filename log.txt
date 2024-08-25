@@ -117,6 +117,9 @@ Highlight the digits
 Colorful search results
 Color number the right way
 
+Copy the remaining step of the tutorial like from step 171. 
+DONE!
+
 Interesting lesson about extern: 
     * When you declare a variable as extern, it is a declaration without definition. 
     * The actual definition of the variable is done in another file. 

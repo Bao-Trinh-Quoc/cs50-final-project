@@ -24,11 +24,13 @@
 
 typedef struct erow 
 {
+    int idx;
     int size;
     int rsize;
     char *chars;
     char *render;
     unsigned char *hl;
+    int hl_open_comment;
 } erow;
 
 struct editorConfig 
@@ -52,9 +54,13 @@ struct editorConfig
 extern struct editorConfig E;
 
 struct editorSyntax {
-  char *filetype;
-  char **filematch;
-  int flags;
+    char *filetype;
+    char **filematch;
+    char **keywords;
+    char *singleline_comment_start;
+    char *multiline_comment_start;
+    char *multiline_comment_end;
+    int flags;
 };
 
 
@@ -65,7 +71,7 @@ struct editorSyntax {
 #define EDITO_QUIT_TIMES 1
 #define CTRL_KEY(k) ((k) & 0x1f)
 #define HL_HIGHLIGHT_NUMBERS (1<<0)
-
+#define HL_HIGHLIGHT_STRINGS (1<<1)
 
 enum editorKey {
     BACKSPACE = 127,
@@ -83,6 +89,11 @@ enum editorKey {
 enum editorHighlight 
 {
     HL_NORMAL = 0,
+    HL_COMMENT,
+    HL_MLCOMMENT,
+    HL_KEYWORD1,
+    HL_KEYWORD2,
+    HL_STRING, 
     HL_NUMBER,
     HL_MATCH
 };
