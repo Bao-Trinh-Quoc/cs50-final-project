@@ -66,7 +66,7 @@ struct editorSyntax {
 
 /*** Defines ***/
 
-#define EDITO_VERSION "0.0.1"
+#define EDITO_VERSION "1.0.0"
 #define EDITO_TAB_STOP 8
 #define EDITO_QUIT_TIMES 1
 #define CTRL_KEY(k) ((k) & 0x1f)
