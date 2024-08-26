@@ -1,0 +1,9 @@
+I will introduce to you features of this simple text editor Edito!!
+
+I could save file!
+
+If I made a change and forgot to save?? It will warning me!
+
+Thanks for your attention
+
+THIS WAS CS50!!!
